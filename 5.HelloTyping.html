@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #fff;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    section > div {
+      display: flex;
+      font-size: 3rem;
+    }
+
+    section > div::after {
+      content: '';
+      font-size: 3rem;
+      display: inline-block;
+      width: 20px;
+      height: 10px;
+      background-color: #fff;
+      animation: blink 1s linear infinite;
+      position: relative;
+      top: 50px;
+    }
+
+    @keyframes blink {
+      0% {
+        background-color: rgba(255, 255, 255, 1);
+      }
+      100% {
+        background-color: rgba(255, 255, 255, 0);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+<div>
+  <section>
+    <div>
+      <span></span>
+      <span>안</span>
+      <span>녕</span>
+      <span>하</span>
+      <span>세</span>
+      <span>요</span>
+      <span>.</span>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script>
+  let tl = gsap.timeline({
+    delay: -1,
+    repeatDelay: 1,
+  })
+
+  tl.from('section > div > span', {
+    opacity: 0,
+    position: 'absolute',
+    visibility: 'hidden',
+    stagger: {
+      amount: 3,
+    }
+  })
+</script>
+</body>
+</html>

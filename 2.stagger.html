@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body { margin: 0; padding: 0;}
+    .demo {display: flex;  height: 200px; }
+    .demo .cont {width: 50px; height: 50px; border:1px solid black;}
+
+    .section1 {display: flex; justify-content: center; align-items: center;
+      background: #000; min-height: 200px; color: #fff;}
+    .section1__text > span {display: inline-block; overflow: hidden; }
+    .section1__text > span > span {font-size: 2rem; display: inline-block;}
+  </style>
+</head>
+
+<body>
+<div>
+  <div class="demo">
+    <div class="cont cont1"></div>
+    <div class="cont cont2"></div>
+    <div class="cont cont3"></div>
+    <div class="cont cont4"></div>
+  </div>
+
+  <div class="section1">
+    <div class="section1__text">
+      <span><span>안</span></span>
+      <span><span>녕</span></span>
+      <span><span>하</span></span>
+      <span><span>세</span></span>
+      <span><span>요</span></span>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script>
+  gsap.to('.cont', {duration:1, y: 100, stagger: {amount: 2, from: 'end'}})
+
+  let textTimeLine = gsap.timeline({
+    repeat: -1,    // 무한반복
+    repeatDelay: 1 // 반복과 반복사이에 1초 쉰다.
+  })
+
+  // 아래에서 순차적으로 안녕하세요 올라옴
+  textTimeLine.from('.section1__text > span > span' , {duration: 1, y: 300, stagger: 0.2})
+  // 1초 쉬었다가, 위로 올라가는데, 방향은 거꾸로 요세하녕안 순으로 올라감
+  textTimeLine.to('.section1__text > span > span' , {duration: 1, y: -300, stagger: {each: 1, from: 'end'}}, "+=1")
+
+</script>
+</body>
+</html>
