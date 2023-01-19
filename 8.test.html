@@ -1,0 +1,227 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #f1f1f1;
+    }
+
+    .row-custom {
+      -ms-flex: 0 0 82%;
+      flex: 0 0 82%;
+      max-width: 82%;
+      margin: auto;
+      padding-top:100px;
+      padding-bottom:100px;
+      display: -ms-flexbox!important;
+      display: flex!important;
+    }
+
+    .animation-1 .colbox-central {
+      width: 33.33%;
+      height: 0;
+      padding-bottom: 33.333%;
+      position: relative;
+    }
+
+    .animation-1 .colbox-central .img-abs {
+      position: absolute;
+      left: -10%;
+      width: 110%;
+      top: -10%;
+      height:400px;
+      background-color: #000;
+    }
+
+    .animation-1 .colbox-central .img-step2,
+    .animation-1 .colbox-central .img-step3 {
+      opacity: 0;
+      transform: translate(0px, 100%);
+      -webkit-transform: translate(0px, 100%);
+      -moz-transform: translate(0px, 100%);
+      -ms-transform: translate(0px, 100%);
+      -o-transform: translate(0px, 100%);
+    }
+
+    .animation-1 .colbox-central .img-step3 {
+      width: 90%;
+      bottom: calc(15% - 0px);
+      right: calc(15% - -6px);
+      left: auto;
+      top: auto;
+    }
+
+    .animation-1 .colbox-central--end {
+      width: 33.33%;
+    }
+
+    .animation-1 .colbox-description {
+      width: 33.33%;
+      position: relative;
+
+      display: -ms-flexbox!important;
+      display: flex!important;
+      align-items: center;
+    }
+
+    .animation-1 .colbox-description .text-abs {
+      position: absolute;
+      padding: 30px
+    }
+
+    .animation-1 .colbox-description .text-step2,
+    .animation-1 .colbox-description .text-step3 {
+      opacity: 0;
+      transform: translate(0px, 100%);
+      -webkit-transform: translate(0px, 100%);
+      -moz-transform: translate(0px, 100%);
+      -ms-transform: translate(0px, 100%);
+      -o-transform: translate(0px, 100%);
+    }
+
+    .activate-anim {
+      background-color:red;
+      width: 200px;
+      height:200px;
+    }
+  </style>
+</head>
+
+<body>
+<section class="change-color" data-color="#7543ad">
+  <div class="container-custom py-5 active-compose first">
+    <div class="row py-5">
+      <div class="row-custom animation-1 d-flex">
+
+        <div class="colbox-central--end"></div>
+
+        <div class="colbox-central">
+          <div class="img-abs img-step1"></div>
+          <div class="img-abs img-step2"></div>
+          <div class="img-abs img-step3"></div>
+        </div><!-- /.col-boxcentral -->
+
+        <div class="colbox-description">
+          <div class="text-abs text-step1">
+            <h4 class="mb-3">Sedia semplice</h4>
+            <p class="fz14">Se quello di cui hai bisogno è una sedia semplice dove lavorare, questo è lo spazio giusto
+              per te. Poltrone confortevoli, sedie in location comode e alternative, ti daranno la possibilità di
+              lavorare comodamente e di conoscere nuove persone che hanno scelto come te, questo tipo di spazio. </p>
+          </div>
+          <div class="text-abs text-step2">
+            <h4 class="mb-3">Scrivania riservata</h4>
+            <p class="fz14">Se hai bisogno anche di una scrivania, prenota subito il tuo spazio “scrivania riservata”
+              e troverai tante location per offrirti spazi di lavoro comodi e con la possibilità di lavorare come se
+              fossi dalla tua scrivania personale.</p>
+          </div>
+          <div class="text-abs text-step3">
+            <h4 class="mb-3">Meeting room</h4>
+            <p class="fz14">Hai bisogno di una sala riunioni e non sai dove trovarla? Non preoccuparti, questo è lo
+              spazio giusto per te. L’app Urbnx mette a disposizione moltissime meeting room, anche alternative, adatte
+              a tutte le esigenze.</p>
+          </div>
+
+        </div><!-- /.col-boxdescription -->
+      </div><!-- /.row-custom -->
+    </div><!-- /.row -->
+  </div><!-- /.container-custom -->
+</section>
+
+<div class="activate-anim">
+  <div class="animated-test">
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  const composeTl =  gsap.timeline({
+    scrollTrigger: {
+      trigger: ".active-compose.first",
+      start: "center center",
+      // end: "bottom 0%",
+      end:'+=1000',
+      scrub: 1,
+      pinSpacing: true,
+      pin: true,
+      toggleActions: "play pause reverse reset",
+      // markers: true,
+    }
+  });
+
+  composeTl.to(".active-compose.first .text-step1", {
+    opacity: 0,
+    y: "-100%",
+    duration: 6,
+  })
+    //img1
+    .to(".active-compose.first .img-step1", {
+      opacity: 1,
+      x: "-100%",
+      scale: 0.8,
+      duration: 6,
+    }, "-=6")
+
+    //2
+    .to(".active-compose.first .text-step2", {
+      opacity: 1,
+      y: "0%",
+      duration: 6,
+    })
+    //img2
+    .to(".active-compose.first .img-step2", {
+      opacity: 1,
+      y: "0%",
+      duration: 6,
+    }, "-=3")
+
+    //3
+    .to(".active-compose.first .text-step2", {
+      opacity: 0,
+      y: "-100%",
+      duration: 6,
+    }, "+=10")
+    .to(".active-compose.first .img-step2", {
+      opacity: 1,
+      x: "-86%",
+      scale: 0.7,
+      duration: 6,
+    })
+    .to(".active-compose.first .img-step1", {
+      x: "-150%",
+      scale: 0.3,
+      duration: 3,
+    }, "-=6")
+    .to(".active-compose.first .text-step3", {
+      opacity: 1,
+      y: "0%",
+      duration: 6,
+    }, "+=3")
+
+    .to(".active-compose.first .img-step3", {
+      opacity: 1,
+      y: "0%",
+      duration: 6,
+    }, "-=3");
+
+  //secondo anim
+  gsap.to(".animated-test", {
+    // opacity: 1,
+    x:100,
+    scrollTrigger: {
+      trigger: ".activate-anim",
+      start: "top bottom",
+//   end: "+=100",
+      markers: true,
+      // scrub: true,
+      duration: 6,
+    }
+  })
+</script>
+</body>
+</html>
