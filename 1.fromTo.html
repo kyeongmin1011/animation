@@ -10,6 +10,7 @@
     .box1 {background: black;}
     .box2 {background: red;}
     .box3 {background: blue;}
+    .box4 {background: green;}
   </style>
 </head>
 
@@ -18,6 +19,7 @@
   <div class="box box1"></div>
   <div class="box box2"></div>
   <div class="box box3"></div>
+  <div class="box box4"></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
@@ -30,7 +32,8 @@
     .to('.box1', {duration: 3, backgroundColor: '', x: 0}) // 다시 되돌아가기
 
   gsap.to('.box2', {duration:2, x: 100})
-  gsap.from('.box3', {duration:2, x: 300}, {duration:2, x: 500})
+  gsap.from('.box3', {duration:2, x: 300, backgroundColor: 'pink'})
+  gsap.fromTo('.box4', {opacity: 0}, {opacity: 1, duration: 2, backgroundColor: 'greenyellow'}); // 시작, 끝
 </script>
 </body>
 </html>

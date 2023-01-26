@@ -1,0 +1,44 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {margin: 0; padding: 0;}
+    .blank { height: 2000px;}
+    .number_wrapper {text-align:center; min-height: 1000px;}
+    #number {font-size:25vw; font-family:sans-serif; font-weight:600; color: #444444;}
+  </style>
+</head>
+
+<body>
+<div>
+  <div class="blank"></div>
+  <div class="number_wrapper">
+    <div id="number">0</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  var startCount = {var: 0};
+
+  gsap.to(startCount, {
+    var: 100, duration: 3, ease:"none",
+    onUpdate: changeNumber,
+    scrollTrigger: {
+      trigger: "#number",
+    },
+  })
+
+  function changeNumber() {
+    console.log('num', (startCount.var).toFixed())
+    number.innerHTML = (startCount.var).toFixed();
+  }
+</script>
+</body>
+</html>
